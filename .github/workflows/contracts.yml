@@ -42,7 +42,7 @@ jobs:
         run: npm run coverage || true
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           files: ./packages/contracts/coverage/lcov.info
           flags: contracts
