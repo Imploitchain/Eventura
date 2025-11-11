@@ -17,7 +17,7 @@
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.0",
     "@typechain/hardhat": "^9.0.0",
-    "@types/node": "^20.0.0",
+    "@types/node": "^24.10.0",
     "hardhat": "^2.19.0",
     "typechain": "^8.3.0",
     "typescript": "^5.0.0"
