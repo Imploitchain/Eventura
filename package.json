@@ -13,26 +13,13 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
     "clean": "turbo run clean",
     "contracts:compile": "cd packages/contracts && npm run compile",
     "contracts:deploy": "cd packages/contracts && npm run deploy",
     "contracts:test": "cd packages/contracts && npm run test"
   },
-  "dependencies": {
-    "next": "^14.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@reown/appkit": "^1.0.0",
-    "@reown/appkit-adapter-wagmi": "^1.0.0",
-    "wagmi": "^2.12.0",
-    "viem": "^2.21.0",
-    "@tanstack/react-query": "^5.0.0",
-    "zustand": "^4.4.0",
-    "framer-motion": "^11.0.0",
-    "lucide-react": "^0.400.0",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "prettier": "^3.0.0",
     "turbo": "^2.6.0"
