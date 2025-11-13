@@ -5,7 +5,7 @@ import { RecommendedEvents } from '@/components/RecommendedEvents'
 import { motion } from 'framer-motion'
 import { Calendar, Shield, Zap, Users, ArrowRight, Sparkles } from 'lucide-react'
 import { useAccount } from 'wagmi'
-import { sampleEvents } from '@/data/sampleEvents'
+import { useOnchainEvents } from '@/hooks/useOnchainEvents'
 
 const features = [
   {
@@ -32,6 +32,7 @@ const features = [
 
 export default function Home() {
   const { isConnected } = useAccount()
+  const { events, loading } = useOnchainEvents()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -153,9 +154,9 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Recommended Events Section */}
+      {/* Recommended Events Section (on-chain) */}
       <RecommendedEvents
-        allEvents={sampleEvents}
+        allEvents={events}
         className="relative z-10"
         limit={6}
       />
