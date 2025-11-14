@@ -40,7 +40,10 @@ export interface Web3Profile {
  * - Direct contract calls via Reown
  */
 
-
+const client = createPublicClient({
+  chain : celoSepolia,
+  transport: http(),
+});
 export async function fetchUserNFTCollections(
   address: Address,
   publicClient: PublicClient
