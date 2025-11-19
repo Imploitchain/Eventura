@@ -1,0 +1,115 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test-frontend:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test -- --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage/lcov.info
+          flags: frontend
+          name: frontend-coverage
+          fail_ci_if_error: false
+
+      - name: Check coverage threshold
+        run: |
+          npm test -- --coverage --coverageReporters=text-summary > coverage-summary.txt 2>&1 || true
+          COVERAGE=$(grep -E 'All files.*\|.*[0-9]+\.[0-9]+' coverage-summary.txt | grep -oE '[0-9]+\.[0-9]+' | head -1 || echo "0")
+          THRESHOLD=80
+          if [ -z "$COVERAGE" ] || [ "$(echo "$COVERAGE < $THRESHOLD" | bc)" -eq 1 ]; then
+            echo "Coverage ${COVERAGE}% is below threshold of ${THRESHOLD}%"
+            exit 1
+          fi
+          echo "Coverage ${COVERAGE}% meets threshold"
+
+  test-contracts:
+    name: Smart Contract Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/contracts
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Hardhat tests
+        run: npm test
+
+      - name: Generate coverage
+        run: npm run coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage/lcov.info
+          flags: contracts
+          name: contract-coverage
+          fail_ci_if_error: false
+
+      - name: Check coverage threshold
+        run: |
+          npm test -- --coverage --coverageReporters=text-summary > coverage-summary.txt 2>&1 || true
+          COVERAGE=$(grep -E 'All files.*\|.*[0-9]+\.[0-9]+' coverage-summary.txt | grep -oE '[0-9]+\.[0-9]+' | head -1 || echo "0")
+          THRESHOLD=80
+          if [ -z "$COVERAGE" ] || [ "$(echo "$COVERAGE < $THRESHOLD" | bc)" -eq 1 ]; then
+            echo "Coverage ${COVERAGE}% is below threshold of ${THRESHOLD}%"
+            exit 1
+          fi
+          echo "Coverage ${COVERAGE}% meets threshold"
+
+  coverage-diff:
+    name: Coverage Diff Comment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: [test-frontend, test-contracts]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Comment PR with coverage diff
+        uses: py-cov-action/python-coverage-comment-action@v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MINIMUM_GREEN: 80
+          MINIMUM_ORANGE: 70

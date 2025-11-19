@@ -1,0 +1,16 @@
+frontend:
+  - apps/web/**/*
+
+backend:
+  - packages/db/**/*
+  - packages/database/**/*
+
+smart-contracts:
+  - packages/contracts/**/*
+
+docs:
+  - docs/**/*
+  - '*.md'
+
+ci:
+  - .github/**/*

@@ -12,7 +12,8 @@
     "verify": "hardhat verify",
     "clean": "hardhat clean",
     "coverage": "hardhat coverage",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "lint": "solhint 'contracts/**/*.sol'"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
@@ -29,6 +30,7 @@
     "hardhat": "^2.19.0",
     "hardhat-gas-reporter": "^1.0.10",
     "solidity-coverage": "^0.8.16",
+    "solhint": "^4.0.0",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.0",
     "typescript": "^5.9.3"

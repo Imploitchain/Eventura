@@ -15,6 +15,8 @@
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
     "clean": "turbo run clean",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "contracts:compile": "cd packages/contracts && npm run compile",
     "contracts:deploy": "cd packages/contracts && npm run deploy",
     "contracts:test": "cd packages/contracts && npm run test"
