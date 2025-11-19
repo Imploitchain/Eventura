@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { AttendeeCard } from '@/components/AttendeeCard'
+import { SuggestedConnections } from '@/components/SuggestedConnections'
 
 interface Attendee {
   id: string
@@ -405,6 +406,15 @@ export default function AttendeesPage() {
               <p className="text-sm">{error}</p>
             </div>
           </motion.div>
+        )}
+
+        {/* Suggested Connections */}
+        {!loading && !error && (
+          <SuggestedConnections
+            eventId={eventId}
+            walletAddress={address}
+            onConnect={handleConnect}
+          />
         )}
 
         {/* Loading Skeleton */}
