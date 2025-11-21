@@ -102,6 +102,28 @@ export const EventFactoryABI = [
     ],
     outputs: [{ name: 'eventId', type: 'uint256' }],
   },
+  // updateEventMetadata(uint256, string)
+  {
+    type: 'function',
+    name: 'updateEventMetadata',
+    stateMutability: 'nonpayable',
+    inputs: [
+      { name: 'eventId', type: 'uint256' },
+      { name: 'newMetadataURI', type: 'string' },
+    ],
+    outputs: [],
+  },
+  // setEventStatus(uint256, bool)
+  {
+    type: 'function',
+    name: 'setEventStatus',
+    stateMutability: 'nonpayable',
+    inputs: [
+      { name: 'eventId', type: 'uint256' },
+      { name: 'active', type: 'bool' },
+    ],
+    outputs: [],
+  },
   // getEvent(uint256)
   {
     type: 'function',

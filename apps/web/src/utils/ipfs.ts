@@ -1,8 +1,3 @@
-// TODO: IPFS upload utility (not implemented yet)
-export async function uploadToIPFS(_data: any): Promise<string> {
-  throw new Error('uploadToIPFS not implemented')
-}
-
 export type IpfsUploadResponse = { cid: string; uri: string; gatewayUrl: string }
 
 // Upload to IPFS through server API route (keeps secrets server-side)
