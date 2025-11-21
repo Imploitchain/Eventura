@@ -6,6 +6,9 @@ import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { Calendar as CalendarIcon, Wallet, AlertCircle, Home, Sparkles } from 'lucide-react'
 import { ConnectButton } from '@/components/ConnectButton'
+import { EventCardSkeleton } from '@/components/skeletons/EventCardSkeleton'
+import { EmptyState } from '@/components/empty/EmptyState'
+import { CalendarIllustration } from '@/components/illustrations'
 import type { EventWithMetadata } from '@/types/multilang-event'
 import { fetchEventMetadata, detectUserLanguage } from '@/utils/multilang'
 import { sortEventsByDate } from '@/utils/calendar'
@@ -241,24 +244,14 @@ export default function CalendarPage() {
 
         {/* Empty State */}
         {isConnected && !loading && !error && events.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="max-w-2xl mx-auto"
-          >
-            <div className="bg-white/5 border border-white/10 rounded-lg p-12 text-center">
-              <CalendarIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-2xl font-semibold text-white mb-2">
-                No Events Found
-              </h3>
-              <p className="text-gray-300 mb-6">
-                There are no events available on the Base L2 blockchain yet.
-              </p>
-              <a href="#" className="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
-                Create First Event
-              </a>
-            </div>
-          </motion.div>
+          <EmptyState
+            illustration={<CalendarIllustration />}
+            heading="No Events Found"
+            message="There are no events available on the Base L2 blockchain yet. Be the first to create an event!"
+            ctaText="Create First Event"
+            ctaLink="#"
+            size="lg"
+          />
         )}
 
         {/* Info Section */}
