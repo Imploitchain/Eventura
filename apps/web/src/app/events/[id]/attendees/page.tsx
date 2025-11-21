@@ -440,23 +440,13 @@ export default function AttendeesPage() {
 
         {/* Empty State - No results after filtering */}
         {!loading && attendees.length === 0 && activeFiltersCount > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-12 text-center"
-          >
-            <AlertCircle className="w-16 h-16 text-white/40 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">No Results Found</h2>
-            <p className="text-white/70 mb-6">
-              No attendees match your current filters. Try adjusting your search.
-            </p>
-            <button
-              onClick={handleClearFilters}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all"
-            >
-              Clear Filters
-            </button>
-          </motion.div>
+          <EmptyState
+            illustration={<FilterIllustration />}
+            heading="No Results Found"
+            message="No attendees match your current filters. Try adjusting your search criteria."
+            ctaText="Clear Filters"
+            onCtaClick={handleClearFilters}
+          />
         )}
 
         {/* Attendees Grid */}
