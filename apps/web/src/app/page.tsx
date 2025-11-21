@@ -2,6 +2,9 @@
 
 import { ConnectButton } from '@/components/ConnectButton'
 import { RecommendedEvents } from '@/components/RecommendedEvents'
+import { EventCardSkeleton } from '@/components/skeletons/EventCardSkeleton'
+import { EmptyState } from '@/components/empty/EmptyState'
+import { CalendarIllustration } from '@/components/illustrations'
 import { motion } from 'framer-motion'
 import { Calendar, Shield, Zap, Users, ArrowRight, Sparkles } from 'lucide-react'
 import { useAccount } from 'wagmi'
@@ -155,11 +158,36 @@ export default function Home() {
       </motion.section>
 
       {/* Recommended Events Section (on-chain) */}
-      <RecommendedEvents
-        allEvents={events}
-        className="relative z-10"
-        limit={6}
-      />
+      <section className="relative z-10 px-6 py-12">
+        <div className="max-w-7xl mx-auto">
+          {loading ? (
+            <>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-8 h-8 bg-white/10 rounded animate-pulse" />
+                <div className="h-8 w-64 bg-white/10 rounded animate-pulse" />
+              </div>
+              <div className="h-6 w-96 bg-white/5 rounded animate-pulse mb-8" />
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <EventCardSkeleton count={6} />
+              </div>
+            </>
+          ) : events.length > 0 ? (
+            <RecommendedEvents
+              allEvents={events}
+              limit={6}
+            />
+          ) : (
+            <EmptyState
+              illustration={<CalendarIllustration />}
+              heading="No Events Found"
+              message="There are no events available on the blockchain yet. Be the first to create an event!"
+              ctaText="Create Event"
+              ctaLink="#"
+              size="lg"
+            />
+          )}
+        </div>
+      </section>
 
       {/* How It Works Section */}
       <section className="relative z-10 px-6 py-20">
