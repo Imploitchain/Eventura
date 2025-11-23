@@ -8,10 +8,13 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "audit": "npm audit --production"
   },
   "dependencies": {
     "drizzle-orm": "^0.29.3",
+    "ethers": "^6.9.0",
+    "isomorphic-dompurify": "^1.8.0",
     "pg": "^8.11.3"
   },
   "devDependencies": {
