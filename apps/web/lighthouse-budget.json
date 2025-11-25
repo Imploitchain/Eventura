@@ -1,0 +1,52 @@
+[
+  {
+    "path": "*.{js,html,css}",
+    "resourceSizes": [
+      {
+        "resourceType": "document",
+        "budget": 100
+      },
+      {
+        "resourceType": "script",
+        "budget": 200
+      },
+      {
+        "resourceType": "stylesheet",
+        "budget": 100
+      },
+      {
+        "resourceType": "image",
+        "budget": 500
+      }
+    ]
+  },
+  {
+    "path": "**/*.{js,html,css}",
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 500
+      },
+      {
+        "resourceType": "document",
+        "budget": 100
+      },
+      {
+        "resourceType": "script",
+        "budget": 200
+      },
+      {
+        "resourceType": "stylesheet",
+        "budget": 100
+      },
+      {
+        "resourceType": "image",
+        "budget": 500
+      },
+      {
+        "resourceType": "font",
+        "budget": 100
+      }
+    ]
+  }
+]
