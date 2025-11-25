@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 import { useAccount, useWalletClient, usePublicClient } from 'wagmi'
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Users, Ticket, ExternalLink, Clock } from 'lucide-react'
@@ -158,6 +158,7 @@ export function EventCard({
               src={event.metadata.media.coverImage.replace('ipfs://', 'https://ipfs.io/ipfs/')}
               alt={translation.name}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
             {/* Status Badge */}
             <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
