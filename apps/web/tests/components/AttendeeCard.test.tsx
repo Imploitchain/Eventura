@@ -133,7 +133,7 @@ describe('AttendeeCard', () => {
   it('collapses bio when "Show less" is clicked', async () => {
     const user = userEvent.setup()
     const attendeeWithLongBio = {
-      ...mockAttendantData,
+      ...mockAttendeeData,
       bio: 'A'.repeat(200),
     }
 
