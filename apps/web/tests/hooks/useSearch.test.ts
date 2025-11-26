@@ -69,7 +69,7 @@ describe('useSearch', () => {
     // Mock setTimeout to immediately execute
     vi.mocked(setTimeout).mockImplementation((fn) => {
       fn()
-      return 1
+      return 123 as any
     })
   })
 
@@ -432,7 +432,7 @@ describe('useSearch', () => {
       // Mock setTimeout to delay execution
       vi.mocked(setTimeout).mockImplementation((fn) => {
         // Don't execute immediately for this test
-        return 123
+        return {} as any
       })
       
       const { result } = renderHook(() => useSearch())
@@ -448,7 +448,7 @@ describe('useSearch', () => {
     it('stops loading after search completes', async () => {
       vi.mocked(setTimeout).mockImplementation((fn) => {
         fn()
-        return 123
+        return {} as any
       })
       
       const { result } = renderHook(() => useSearch())
