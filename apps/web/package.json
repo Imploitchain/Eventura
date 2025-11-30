@@ -43,7 +43,7 @@
     "resend": "^6.5.2",
     "tailwind-merge": "^2.6.0",
     "use-debounce": "^10.0.6",
-    "viem": "^2.0.0",
+    "viem": "^2.40.3",
     "wagmi": "^2.0.0",
     "zustand": "^4.4.0"
   },
