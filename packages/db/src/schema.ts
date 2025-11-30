@@ -22,8 +22,21 @@ export const notificationTypeEnum = pgEnum('notification_type', [
 ]);
 
 // Tables
+// Email preferences type
+export const emailPreferences = {
+  connectionRequests: true,
+  connectionAccepted: true,
+  newMessages: true,
+  eventReminders: true,
+  waitlistUpdates: true,
+  marketing: false,
+} as const;
+
 export const users = pgTable('users', {
   walletAddress: text('wallet_address').primaryKey(),
+  email: text('email'),
+  emailVerified: boolean('email_verified').default(false),
+  emailPreferences: jsonb('email_preferences').$type<typeof emailPreferences>().default(emailPreferences),
   displayName: text('display_name'),
   globalBio: text('global_bio'),
   avatarIpfsHash: text('avatar_ipfs_hash'),
