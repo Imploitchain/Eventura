@@ -27,7 +27,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.25",
     "hardhat": "^2.19.0",
-    "hardhat-gas-reporter": "^1.0.10",
+    "hardhat-gas-reporter": "^2.3.0",
     "solidity-coverage": "^0.8.16",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.0",
