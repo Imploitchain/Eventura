@@ -40,7 +40,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload audit report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: npm-audit-report
           path: audit-report.txt
@@ -163,7 +163,7 @@ jobs:
             --rule 'security/detect-unsafe-regex: error' || true
 
       - name: Upload ESLint report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: eslint-security-report
           path: eslint-report.json
@@ -207,7 +207,7 @@ jobs:
             > license-report.txt || true
 
       - name: Upload license report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: license-report
           path: license-report.txt
@@ -239,7 +239,7 @@ jobs:
           echo "- SAST Scan: ${{ needs.sast-scan.result }}" >> security-summary.md
 
       - name: Upload security summary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: security-summary
           path: security-summary.md
