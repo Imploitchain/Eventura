@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
         to_wallet: sanitizedInput.to_wallet,
         event_id: sanitizedInput.event_id || null,
         content: sanitizedInput.content
-      })
+      } as any)
       .select(`
         id,
         from_wallet,
