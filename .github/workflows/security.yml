@@ -115,7 +115,7 @@ jobs:
         run: npm run compile
 
       - name: Run Slither
-        uses: crytic/slither-action@v0.3.0
+        uses: crytic/slither-action@v0.4.2
         id: slither
         continue-on-error: true
         with:
